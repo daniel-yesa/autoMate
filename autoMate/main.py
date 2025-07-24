@@ -15,10 +15,12 @@ def create_app():
 
     @app.route("/")
     def home():
-        logger.info("📄 Rendering home.html")
-        return render_template("home.html")
-
-    return app
+        try:
+            logger.info("📄 Rendering home.html")
+            return render_template("home.html")
+        except Exception as e:
+            logger.error(f"❌ Error rendering home.html: {e}")
+            return f"Internal error: {e}", 500
 
 if __name__ == "__main__":
     logger.info("🚀 Running app via __main__")
