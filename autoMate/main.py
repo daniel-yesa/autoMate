@@ -12,7 +12,6 @@ def create_app():
     logger.info("🔗 Registering Findr blueprint...")
     app.register_blueprint(findr_bp, url_prefix="/findr")
     logger.info("✅ Findr blueprint registered.")
-    return app
 
     @app.route("/")
     def home():
@@ -22,6 +21,9 @@ def create_app():
         except Exception as e:
             logger.error(f"❌ Error rendering home.html: {e}")
             return f"Internal error: {e}", 500
+
+    return app
+
 
 if __name__ == "__main__":
     logger.info("🚀 Running app via __main__")
