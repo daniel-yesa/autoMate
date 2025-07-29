@@ -9,6 +9,9 @@ def create_app():
     logger.info("🔧 Creating Flask app...")
     app = Flask(__name__)
 
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+    
     logger.info("🔗 Registering Findr blueprint...")
     app.register_blueprint(findr_bp, url_prefix="/findr")
     logger.info("✅ Findr blueprint registered.")
