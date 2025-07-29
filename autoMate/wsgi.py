@@ -8,4 +8,4 @@ logger.info("🔄 Starting via WSGI...")
 
 app = create_app()  # ✅ Assign the result to `app`
 
-logger.info("✅ WSGI app created.")
+logger.info("✅ WSGI app created")
