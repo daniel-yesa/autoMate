@@ -12,6 +12,7 @@ def create_app():
     logger.info("🔗 Registering Findr blueprint...")
     app.register_blueprint(findr_bp, url_prefix="/findr")
     logger.info("✅ Findr blueprint registered.")
+    return app
 
     @app.route("/")
     def home():
