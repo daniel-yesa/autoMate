@@ -1,6 +1,6 @@
 import os
 import logging
-from main import create_app
+from main import app
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
