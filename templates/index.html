@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autoMate Hub</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Logo */
+        .logo-header {
+            margin-top: 60px;
+            margin-bottom: 50px;
+        }
+
+        .logo-text {
+            font-size: 4.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .auto { color: #00e1ff; }
+        .mate { color: #ff00ff; }
+        .gear {
+            font-size: 1.5rem;
+            margin-left: 10px;
+            display: inline-block;
+            animation: spin 4s linear infinite;
+        }
+
+        /* Glow Animation */
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 5px #00e1ff, 0 0 10px #00e1ff, 0 0 20px #00e1ff; }
+            100% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 60px #ff00ff; }
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Buttons */
+        .glow-button {
+            background: none;
+            border: 2px solid #00e1ff;
+            padding: 18px 40px;
+            font-size: 1.4rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #00e1ff;
+            cursor: pointer;
+            margin: 15px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 12px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+        .glow-button:hover {
+            background-color: #00e1ff;
+            color: #0d0d0d;
+            box-shadow: 0 0 15px #00e1ff, 0 0 30px #00e1ff;
+        }
+
+        /* Tooltip on hover */
+        .glow-button::after {
+            content: attr(data-desc);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 225, 255, 0.9);
+            color: #0d0d0d;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .glow-button:hover::after { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Logo -->
+    <header class="logo-header">
+        <h1 id="typewriter" class="logo-text"></h1>
+    </header>
+
+    <!-- Buttons with descriptions -->
+    <a href="#" onclick="window.open('https://findr-production-a4a4.up.railway.app/', '_blank')" class="glow-button" data-desc="Find unmatched sales and missing records">Launch Findr</a>
+    <a href="#" class="glow-button" data-desc="Self-install tracking and reporting tool">Launch Self.ie</a>
+    <a href="#" class="glow-button" data-desc="More tools coming soon">Another Tool</a>
+
+    <!-- Glitch Typing Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const el = document.getElementById("typewriter");
+            const text = 'autoMate⚙';
+            const coloredHTML = '<span class="auto">auto</span><span class="mate">Mate</span><span class="gear">⚙️</span>';
+            const glitchChars = "!@#$%^&*()_+{}:<>?/\\|[];',.";
+
+            let output = "";
+            let i = 0;
+
+            function glitchLetter(letter, callback) {
+                let count = 0;
+                const flicker = setInterval(() => {
+                    el.innerHTML = output + `<span>${glitchChars[Math.floor(Math.random() * glitchChars.length)]}</span>`;
+                    count++;
+                    if (count > 3) {
+                        clearInterval(flicker);
+                        output += letter;
+                        el.innerHTML = output;
+                        callback();
+                    }
+                }, 50);
+            }
+
+            function typeNext() {
+                if (i < text.length) {
+                    glitchLetter(text[i], () => {
+                        i++;
+                        typeNext();
+                    });
+                } else {
+                    // Replace with final colored version once done
+                    el.innerHTML = coloredHTML;
+                }
+            }
+
+            typeNext();
+        });
+    </script>
+
+</body>
+</html>
