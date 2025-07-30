@@ -1,4 +1,4 @@
-autoMate 🚀
+#autoMate 🚀
 Your central hub for sales automation tools
 
 autoMate is a web-based dashboard that serves as a one-stop hub for our internal automation utilities.
